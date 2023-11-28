@@ -10,11 +10,12 @@ public class Cube_Script : MonoBehaviour
     public Transform spawner;
     public GameObject[] bullets;
     public int Mag = 15;
+    public GameObject reloadText;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        reloadText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -23,11 +24,16 @@ public class Cube_Script : MonoBehaviour
         Move();
         Shoot();
         Reload();
+
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            reloadText.SetActive(false);
+        }
     }
 
     void Shoot()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (Mag > 0)
             {
@@ -37,7 +43,7 @@ public class Cube_Script : MonoBehaviour
             }
             if (Mag == 0)
             {
-                Debug.Log("RELOAD");
+                reloadText.SetActive(true);
             }
             
         }
@@ -74,7 +80,10 @@ public class Cube_Script : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             Mag = 15;
+            reloadText.SetActive(false);
         }
     }
+
+
 }
 

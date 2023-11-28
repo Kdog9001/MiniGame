@@ -14,7 +14,14 @@ public class FollowCube : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = player.transform.position + new Vector3(-4,2,-4);
 
+        if (Input.GetKey(KeyCode.Mouse1))
+        {
+            transform.position = player.transform.position + new Vector3(0, 2, -4);
+        }
+        else
+        {
+            transform.position = player.transform.position + new Vector3(-4, 2, -4);
+        }
     }
 }
