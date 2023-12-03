@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Cube_Script : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Cube_Script : MonoBehaviour
     public GameObject[] bullets;
     public int Mag = 15;
     public GameObject reloadText;
+    public TextMeshProUGUI MagText;
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +32,7 @@ public class Cube_Script : MonoBehaviour
         {
             reloadText.SetActive(false);
         }
+        MagText.text = Mag + "/15";
     }
 
     void Shoot()

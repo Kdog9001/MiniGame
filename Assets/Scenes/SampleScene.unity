@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1371,6 +1371,7 @@ MonoBehaviour:
   - {fileID: 7872624151866603961, guid: 1b24f325b8325a241a7d5593f288a535, type: 3}
   Mag: 15
   reloadText: {fileID: 1447026924}
+  MagText: {fileID: 1054941470}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2269,6 +2270,8 @@ MonoBehaviour:
   ResumeButton: {fileID: 1772903887}
   Title: {fileID: 231019017}
   RestartButton: {fileID: 1527990899}
+  score: 0
+  ScoreText: {fileID: 0}
 --- !u!4 &1337979500
 Transform:
   m_ObjectHideFlags: 0

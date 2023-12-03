@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,9 +11,14 @@ public class GameManager : MonoBehaviour
     public GameObject ResumeButton;
     public GameObject Title;
     public GameObject RestartButton;
+    public int score;
+    public TextMeshProUGUI ScoreText;
+
+
     void Start()
     {
         Cursor.visible = false;
+        score = 0;
     }
 
     // Update is called once per frame
@@ -26,6 +32,7 @@ public class GameManager : MonoBehaviour
             Title.SetActive(true);
             RestartButton.SetActive(true);
         }
+        Score();
     }
 
     public void Quit()
@@ -45,5 +52,11 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void Score()
+    {
+        //score += 1;
+        ScoreText.text = "Score: " + score;
     }
 }
