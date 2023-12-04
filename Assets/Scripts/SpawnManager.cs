@@ -6,6 +6,7 @@ public class SpawnManager : MonoBehaviour
 {
 
     public GameObject Target;
+    public GameManager ManagerObject;
     //change to fit in with target boundaries that will be built
     private float spawnRangeX = 15;
     private float spawnPosZ = 15;
@@ -15,7 +16,11 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnTarget", startDelay, spawnInterval);
+        ManagerObject = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        if (ManagerObject.playing == true)
+        {
+            InvokeRepeating("SpawnTarget", startDelay, spawnInterval);
+        }
     }
 
     // Update is called once per frame

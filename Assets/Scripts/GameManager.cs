@@ -11,14 +11,24 @@ public class GameManager : MonoBehaviour
     public GameObject ResumeButton;
     public GameObject Title;
     public GameObject RestartButton;
+    public GameObject PistolObject;
+    public GameObject ARObject;
     public int score;
+    public int streak;
     public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI StreakText;
+    public DetectCollisions CollisionScript;
+    public GameObject TargetObject;
+    public bool playing;
 
 
     void Start()
     {
+        CollisionScript = TargetObject.GetComponent<DetectCollisions>();
         Cursor.visible = false;
+        Score(0);
         score = 0;
+        streak = 0;
     }
 
     // Update is called once per frame
@@ -31,8 +41,9 @@ public class GameManager : MonoBehaviour
             ResumeButton.SetActive(true);
             Title.SetActive(true);
             RestartButton.SetActive(true);
+            playing = false;
         }
-        Score();
+        WeaponSelect();
     }
 
     public void Quit()
@@ -47,6 +58,7 @@ public class GameManager : MonoBehaviour
         ResumeButton.SetActive(false);
         Title.SetActive(false);
         RestartButton.SetActive(false);
+        playing = true;
     }
 
     public void Restart()
@@ -54,9 +66,29 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
     }
 
-    public void Score()
+    public void Score(int scoreToAdd)
     {
-        //score += 1;
+        score += scoreToAdd;
         ScoreText.text = "Score: " + score;
+    }
+
+    public void UpdateStreak(int StreakCount)
+    {
+        streak += StreakCount;
+        StreakText.text = "Streak: " + streak;
+    }
+
+    public void WeaponSelect()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            PistolObject.SetActive(true);
+            ARObject.SetActive(false);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            PistolObject.SetActive(false);
+            ARObject.SetActive(true);
+        }
     }
 }

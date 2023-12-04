@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class WallCollision : MonoBehaviour
 {
+    public GameManager ManagerObject;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        ManagerObject = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -18,7 +21,7 @@ public class WallCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        ManagerObject.streak = 0;
         Destroy(other.gameObject);
     }
 }

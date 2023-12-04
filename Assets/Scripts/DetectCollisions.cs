@@ -7,10 +7,14 @@ public class DetectCollisions : MonoBehaviour
 {
 
     public int score = 0;
-    
+    //public GameManager ManagerScript;
+    public GameManager ManagerObject;
+
     // Start is called before the first frame update
     void Start()
     {
+        ManagerObject = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        //ManagerScript = ManagerObject.GetComponent<GameManager>();
         Destroy(gameObject, 7);
         score = 0;
     }
@@ -23,8 +27,11 @@ public class DetectCollisions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        ManagerObject.Score(1);
+        ManagerObject.UpdateStreak(1);
         Destroy(gameObject);
         Destroy(other.gameObject);
-        score += 1;
+        //ManagerScript.score += 1;
+        
     }
 }
