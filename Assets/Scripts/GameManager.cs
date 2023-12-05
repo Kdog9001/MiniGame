@@ -15,11 +15,16 @@ public class GameManager : MonoBehaviour
     public GameObject ARObject;
     public int score;
     public int streak;
+    private int HighestStreak;
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI StreakText;
+    public TextMeshProUGUI HighStreakText;
+    public TextMeshProUGUI WeaponText;
     public DetectCollisions CollisionScript;
+
     public GameObject TargetObject;
     public bool playing;
+    
 
 
     void Start()
@@ -29,6 +34,7 @@ public class GameManager : MonoBehaviour
         Score(0);
         score = 0;
         streak = 0;
+        HighestStreak = 0;
     }
 
     // Update is called once per frame
@@ -42,6 +48,7 @@ public class GameManager : MonoBehaviour
             Title.SetActive(true);
             RestartButton.SetActive(true);
             playing = false;
+            Time.timeScale = 0;
         }
         WeaponSelect();
     }
@@ -59,6 +66,7 @@ public class GameManager : MonoBehaviour
         Title.SetActive(false);
         RestartButton.SetActive(false);
         playing = true;
+        Time.timeScale = 1;
     }
 
     public void Restart()
@@ -75,7 +83,12 @@ public class GameManager : MonoBehaviour
     public void UpdateStreak(int StreakCount)
     {
         streak += StreakCount;
-        StreakText.text = "Streak: " + streak;
+        StreakText.text = "Current Streak: " + streak;
+        if (HighestStreak < streak)
+        {
+            HighestStreak = streak;
+        }
+        HighStreakText.text = "Highest Streak: " + HighestStreak;
     }
 
     public void WeaponSelect()
@@ -84,11 +97,13 @@ public class GameManager : MonoBehaviour
         {
             PistolObject.SetActive(true);
             ARObject.SetActive(false);
+            WeaponText.text = "Pistol";
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             PistolObject.SetActive(false);
             ARObject.SetActive(true);
+            WeaponText.text = "AR";
         }
     }
 }

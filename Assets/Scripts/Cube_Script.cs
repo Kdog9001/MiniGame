@@ -11,8 +11,11 @@ public class Cube_Script : MonoBehaviour
     public Transform spawner;
     public GameObject[] bullets;
     public int Mag = 15;
+    public int Magsize = 15;
     public GameObject reloadText;
     public TextMeshProUGUI MagText;
+    public bool pistolBool = true;
+    public bool ARBool = false;
 
 
     // Start is called before the first frame update
@@ -32,7 +35,8 @@ public class Cube_Script : MonoBehaviour
         {
             reloadText.SetActive(false);
         }
-        MagText.text = Mag + "/15";
+        weaponChoice();
+        MagText.text = Mag + "/" + Magsize;
     }
 
     void Shoot()
@@ -54,13 +58,36 @@ public class Cube_Script : MonoBehaviour
 
     }
 
+    public void weaponChoice()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Magsize = 15;
+            Mag = 15;
+            pistolBool = true;
+            ARBool = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Magsize = 30;
+            Mag = 30;
+            pistolBool = false;
+            ARBool = true;
+        }
+    }
+
    
 
     void Reload()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && pistolBool == true)
         {
             Mag = 15;
+            reloadText.SetActive(false);
+        }
+        if (Input.GetKeyDown(KeyCode.R) && ARBool == true)
+        {
+            Mag = 30;
             reloadText.SetActive(false);
         }
     }

@@ -32,7 +32,7 @@ public class FollowCube : MonoBehaviour
         }
         else if (AR == true)
         {
-            transform.position = pistolObject.transform.position + new Vector3(-4, 2, -4);
+            transform.position = ARObject.transform.position + new Vector3(-4, 2, -4);
         }
     }
 

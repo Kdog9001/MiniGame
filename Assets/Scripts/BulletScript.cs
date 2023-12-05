@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    public float speed;
+    private float speed = 50;
 
 
     // Start is called before the first frame update
