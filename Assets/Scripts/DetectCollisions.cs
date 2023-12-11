@@ -16,7 +16,6 @@ public class DetectCollisions : MonoBehaviour
         ManagerObject = GameObject.Find("Game Manager").GetComponent<GameManager>();
         //ManagerScript = ManagerObject.GetComponent<GameManager>();
         Destroy(gameObject, 7);
-        score = 0;
     }
 
     // Update is called once per frame
@@ -27,11 +26,10 @@ public class DetectCollisions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        ManagerObject.Score(1);
+        ManagerObject.Score(score);
         ManagerObject.UpdateStreak(1);
         Destroy(gameObject);
         Destroy(other.gameObject);
-        //ManagerScript.score += 1;
         
     }
 }

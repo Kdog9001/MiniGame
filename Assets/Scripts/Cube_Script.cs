@@ -80,12 +80,12 @@ public class Cube_Script : MonoBehaviour
 
     void Reload()
     {
-        if (Input.GetKeyDown(KeyCode.R) && pistolBool == true)
+        if (Input.GetKeyDown(KeyCode.R))
         {
             Mag = 15;
             reloadText.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.R) && ARBool == true)
+        if (Input.GetKeyDown(KeyCode.R))
         {
             Mag = 30;
             reloadText.SetActive(false);
