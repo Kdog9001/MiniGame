@@ -10,6 +10,7 @@ public class Cube_Script : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform spawner;
     public GameObject[] bullets;
+    public GameManager ManagerObject;
     public int Mag = 15;
     public int Magsize = 15;
     public GameObject reloadText;
@@ -21,6 +22,7 @@ public class Cube_Script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ManagerObject = GameObject.Find("Game Manager").GetComponent<GameManager>();
         reloadText.SetActive(false);
     }
 
@@ -67,7 +69,7 @@ public class Cube_Script : MonoBehaviour
             pistolBool = true;
             ARBool = false;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && ManagerObject.score >= 15)
         {
             Magsize = 30;
             Mag = 30;
@@ -80,12 +82,12 @@ public class Cube_Script : MonoBehaviour
 
     void Reload()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && Magsize == 15)
         {
             Mag = 15;
             reloadText.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && Magsize == 30)
         {
             Mag = 30;
             reloadText.SetActive(false);

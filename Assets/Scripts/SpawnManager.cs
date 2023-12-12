@@ -38,17 +38,17 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Hoz == false && ManagerObject.score > 15)
+        if (Hoz == false && ManagerObject.score >= 10)
         {
             Hoz = true;
             InvokeRepeating("SpawnHozTarget", startDelay, spawnInterval);
         }
-        if (gold == false && ManagerObject.score > 50)
+        if (gold == false && ManagerObject.score >= 50)
         {
             gold = true;
             InvokeRepeating("SpawnGolTarget", startDelay, goldInterval);
         }
-        if (friend == false && ManagerObject.score > 30)
+        if (friend == false && ManagerObject.score >= 25)
         {
             friend = true;
             InvokeRepeating("SpawnFriendTarget", startDelay, friendInterval);

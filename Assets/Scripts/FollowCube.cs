@@ -6,12 +6,13 @@ public class FollowCube : MonoBehaviour
 {
     public GameObject pistolObject;
     public GameObject ARObject;
+    public GameManager ManagerObject;
     public bool pistol = true;
     public bool AR = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        ManagerObject = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -43,7 +44,7 @@ public class FollowCube : MonoBehaviour
             pistol = true;
             AR = false;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && ManagerObject.score > 15)
         {
             pistol = false;
             AR = true;

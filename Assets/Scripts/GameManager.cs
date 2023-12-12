@@ -13,28 +13,32 @@ public class GameManager : MonoBehaviour
     public GameObject RestartButton;
     public GameObject PistolObject;
     public GameObject ARObject;
+    public GameObject ARText;
     public int score;
     public int streak;
     private int HighestStreak;
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI StreakText;
     public TextMeshProUGUI HighStreakText;
-    public TextMeshProUGUI WeaponText;
+    public TextMeshProUGUI WeaponText; 
     public DetectCollisions CollisionScript;
 
     public GameObject TargetObject;
     public bool playing;
+    public bool ARunlock;
     
 
 
     void Start()
     {
         CollisionScript = TargetObject.GetComponent<DetectCollisions>();
-        Cursor.visible = false;
+        //Cursor.visible = false;
         Score(0);
         score = 0;
         streak = 0;
         HighestStreak = 0;
+        Time.timeScale = 0;
+        ARunlock = true;
     }
 
     // Update is called once per frame
@@ -51,6 +55,11 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
         }
         WeaponSelect();
+        if (score >= 15 && ARunlock == true)
+        {
+            ARunlock = false;
+            ARText.SetActive(true);
+        }
     }
 
     public void Quit()
@@ -99,11 +108,12 @@ public class GameManager : MonoBehaviour
             ARObject.SetActive(false);
             WeaponText.text = "Pistol";
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && score >= 15)
         {
             PistolObject.SetActive(false);
             ARObject.SetActive(true);
             WeaponText.text = "AR";
+            ARText.SetActive(false);
         }
     }
 }
